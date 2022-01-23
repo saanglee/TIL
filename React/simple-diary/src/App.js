@@ -3,31 +3,6 @@ import React, { useRef, useState } from "react";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 
-// 1. 예시 임시 배열 생성
-// const dummyList = [
-//   {
-//     id: 1,
-//     author: "이상지",
-//     content: "화이팅",
-//     emotion: 1,
-//     created_date: new Date().getTime(), // getTime()메서드 - Date객체를 밀리세컨즈로 , 숫자로 변환해서 저장
-//   },
-//   {
-//     id: 2,
-//     author: "봄이",
-//     content: "츄르..",
-//     emotion: 3,
-//     created_date: new Date().getTime(),
-//   },
-//   {
-//     id: 3,
-//     author: "장군이",
-//     content: "난 너무 기여워",
-//     emotion: 5,
-//     created_date: new Date().getTime(),
-//   },
-// ];
-
 function App() {
   const [data, SetData] = useState([]);
 
@@ -54,6 +29,15 @@ function App() {
     console.log(newDiaryList);
     // newDiaryList setData함수에 전달해서 data 상태를 바꿔주면 삭제 완료
     SetData(newDiaryList);
+  };
+
+  // 수정 기능 함수
+  const onEdit = (targetId, newContent) => {
+    SetData(
+      data.map((it) =>
+        it.id === targetId ? { ...it, content: newContent } : it
+      )
+    );
   };
 
   return (
