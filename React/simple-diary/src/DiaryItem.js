@@ -13,8 +13,8 @@ const DiaryItem = ({
     setisEdit(!isEdit);
   };
 
-  // localContent State생성 - 수정폼(textarea) 입력 텍스트들(데이터) State로 관리해주도록
-  const [localContent, setLocalContent] = useState("");
+  // 수정 할 때 기존 내용 textarea에 남아있게 하기 - 초기값을 기존 content로 설정해주면 됨
+  const [localContent, setLocalContent] = useState(content);
 
   const handleRemove = () => {
     if (window.confirm(`${id}번째 일기를 정말 삭제하시겠습니까?!`)) {
@@ -42,10 +42,21 @@ const DiaryItem = ({
           />
         ) : (
           <> {content} </>
-        )}{" "}
+        )}
       </div>
-      <button onClick={handleRemove}>삭제하기</button>
-      <button onClick={toggleisEdit}>수정하기</button>{" "}
+
+      {/* 내용 수정 중일 때 버튼 버튼 바뀌기 */}
+      {isEdit ? (
+        <>
+          <button onClick={toggleisEdit}>수정 취소</button>
+          <button>수정 완료</button>{" "}
+        </>
+      ) : (
+        <>
+          <button onClick={handleRemove}>삭제하기</button>
+          <button onClick={toggleisEdit}>수정하기</button>
+        </>
+      )}
     </div>
   );
 };
