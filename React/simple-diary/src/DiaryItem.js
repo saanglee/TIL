@@ -8,16 +8,17 @@ const DiaryItem = ({
   emotion,
   id,
 }) => {
-  // < 6-6 데이터 수정하기 >
-  // isEdit State 생성 | toggleisEdit 함수생성(-> isEdit 상태 값을 반전시킴)
   const [isEdit, setisEdit] = useState(false);
   const toggleisEdit = () => {
     setisEdit(!isEdit);
   };
 
+  // localContent State생성 - 수정폼(textarea) 입력 텍스트들(데이터) State로 관리해주도록
+  const [localContent, setLocalContent] = useState("");
+
   const handleRemove = () => {
     if (window.confirm(`${id}번째 일기를 정말 삭제하시겠습니까?!`)) {
-      onRemove(id); // 함수 호출 (----> App컴포넌트 onRemove)
+      onRemove(id);
     }
   };
 
@@ -30,11 +31,23 @@ const DiaryItem = ({
         <br />
         <span className="date">{new Date(created_date).toLocaleString()}</span>
       </div>
-      <div className="content">{content}</div>
+      {/* 수정하기 버튼 누르면 content에 수정 폼 띄우기 / 삼항연산자 사용 */}
+      <div className="content">
+        {isEdit ? (
+          <textarea
+            value={localContent}
+            onChange={(e) => {
+              setLocalContent(e.target.value);
+            }}
+          />
+        ) : (
+          <> {content} </>
+        )}{" "}
+      </div>
       <button onClick={handleRemove}>삭제하기</button>
       <button onClick={toggleisEdit}>수정하기</button>{" "}
-      {/* onClick에 toggleisEdit 함수 넣어주기 */}
     </div>
   );
 };
+
 export default DiaryItem;
