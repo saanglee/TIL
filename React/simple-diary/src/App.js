@@ -43,7 +43,7 @@ function App() {
   return (
     <div className="App">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList onRemove={onRemove} diaryList={data} />
+      <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
   );
 }
