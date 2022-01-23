@@ -22,6 +22,11 @@ const DiaryItem = ({
     }
   };
 
+  const handleQuitEdit = () => {
+    setisEdit(false); // 수정 취소
+    setLocalContent(content); // 기존 내용으로 초기화
+  };
+
   return (
     <div className="DiaryItem">
       <div className="info">
@@ -48,7 +53,7 @@ const DiaryItem = ({
       {/* 내용 수정 중일 때 버튼 버튼 바뀌기 */}
       {isEdit ? (
         <>
-          <button onClick={toggleisEdit}>수정 취소</button>
+          <button onClick={handleQuitEdit}>수정 취소</button>
           <button>수정 완료</button>{" "}
         </>
       ) : (
