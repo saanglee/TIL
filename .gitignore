@@ -1,5 +1,6 @@
 React/simple-diary/public/*.ico
 React/simple-diary/public/*.png
+basic.js
 
 # node moduls
 React/simple-diary/node_modules/
@@ -8,5 +9,5 @@ React/React-exam1/node_modules/
 React/Udemy-React-package-example/node_modules/
 
 # ETC
-JavaScript/
+JavaScript/async/
 데이터분석-Python/
