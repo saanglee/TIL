@@ -18,7 +18,10 @@ const DiaryEditor = () => {
           onChange={(e) => {
             console.log(e.target.value);
             console.log(e.target.name);
-            setState(e.target.value);
+            setState({
+              ...state,
+              author: e.target.value,
+            });
           }}
         />
       </div>
@@ -28,7 +31,10 @@ const DiaryEditor = () => {
           name="content"
           value={state.content}
           onChange={(e) => {
-            setState(e.target.value);
+            setState({
+              ...state,
+              content: e.target.value,
+            });
           }}
         />
       </div>
