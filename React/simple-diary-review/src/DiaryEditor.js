@@ -10,7 +10,9 @@ const DiaryEditor = () => {
         <input
           value={author}
           onChange={(e) => {
-            console.log(e);
+            // 이벤트객체의 target의 value = author가 변화해야 하는 값
+            // 아직 input에 아무것도 써지지 않고 console에만 찍힘
+            console.log(e.target.value);
           }}
         />
       </div>
