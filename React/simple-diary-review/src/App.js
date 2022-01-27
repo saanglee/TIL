@@ -26,8 +26,8 @@ function App() {
 
   return (
     <div>
-      <DiaryEditor />
-      <DiaryList diaryList={[]} />
+      <DiaryEditor onCreate={onCreate} />
+      <DiaryList diaryList={data} />
     </div>
   );
 }

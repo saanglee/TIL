@@ -1,18 +1,15 @@
 import { useRef, useState } from "react";
 
-const DiaryEditor = () => {
-  // 1. useRef객체 생성
+const DiaryEditor = ({ onCreate }) => {
   const aouthorInput = useRef();
   const contentInput = useRef();
 
-  // state합치기
   const [state, setState] = useState({
     author: "",
     content: "",
     emotion: 1,
   });
 
-  // onChange이벤트 함수
   const handleChangeState = (e) => {
     setState({
       ...state,
@@ -20,7 +17,7 @@ const DiaryEditor = () => {
     });
   };
 
-  // 3. 저장버튼 누를 시 if조건에서 포커스 실행되도록 함
+  // 저장버튼 누른 후 일기 아이템 추가 - onCreate함수 호출
   const handleSubmit = (e) => {
     if (state.author.length < 1) {
       aouthorInput.current.focus();
@@ -31,16 +28,23 @@ const DiaryEditor = () => {
       return;
     }
 
+    onCreate(state.author, state.content, state.emotion);
+
     console.log(state);
     alert("저장성공!");
+
+    // 저장 후  저자, 내용 쓰는 칸 초기화
+    setState({
+      author: "",
+      content: "",
+      emotion: 1,
+    });
   };
 
-  // 2. 각 태그에 ref객체 매핑
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
       <div>
-        {/* author */}
         <input
           ref={aouthorInput}
           name="author"
@@ -49,7 +53,6 @@ const DiaryEditor = () => {
         />
       </div>
       <div>
-        {/* content */}
         <textarea
           ref={contentInput}
           name="content"
