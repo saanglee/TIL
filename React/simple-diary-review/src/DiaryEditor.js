@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const DiaryEditor = () => {
   const [author, setAuthor] = useState("");
+  const [content, setContent] = useState("");
 
   return (
     <div className="DiaryEditor">
@@ -18,7 +19,14 @@ const DiaryEditor = () => {
         />
       </div>
       <div>
-        <textarea />
+        {/* content */}
+        <textarea
+          name="content"
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+        />
       </div>
       <div>
         <span>오늘의 감정 점수</span>
