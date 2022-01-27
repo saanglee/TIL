@@ -5,7 +5,23 @@ const DiaryEditor = () => {
   const [state, setState] = useState({
     author: "",
     content: "",
+    emotion: 1,
   });
+
+  // onChange이벤트 함수
+  const handleChangeState = (e) => {
+    // console.log(e.target.name);
+    // console.log(e.target.value);
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    console.log(state);
+    alert("저장성공!");
+  };
 
   return (
     <div className="DiaryEditor">
@@ -13,16 +29,9 @@ const DiaryEditor = () => {
       <div>
         {/* author */}
         <input
-          name="state"
+          name="author"
           value={state.author}
-          onChange={(e) => {
-            console.log(e.target.value);
-            console.log(e.target.name);
-            setState({
-              ...state,
-              author: e.target.value,
-            });
-          }}
+          onChange={handleChangeState}
         />
       </div>
       <div>
@@ -30,17 +39,16 @@ const DiaryEditor = () => {
         <textarea
           name="content"
           value={state.content}
-          onChange={(e) => {
-            setState({
-              ...state,
-              content: e.target.value,
-            });
-          }}
+          onChange={handleChangeState}
         />
       </div>
       <div>
         <span>오늘의 감정 점수</span>
-        <select>
+        <select
+          name="emotion"
+          value={state.emotion}
+          onChange={handleChangeState}
+        >
           <option value={1}>1</option>
           <option value={2}>2</option>
           <option value={3}>3</option>
@@ -49,7 +57,7 @@ const DiaryEditor = () => {
         </select>
       </div>
       <div>
-        <buttno>일기 저장하기</buttno>
+        <button onClick={handleSubmit}>일기 저장하기</button>
       </div>
     </div>
   );
