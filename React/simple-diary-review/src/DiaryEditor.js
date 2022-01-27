@@ -1,20 +1,24 @@
 import { useState } from "react";
 
 const DiaryEditor = () => {
-  const [author, setAuthor] = useState("");
-  const [content, setContent] = useState("");
+  // state합치기
+  const [state, setState] = useState({
+    author: "",
+    content: "",
+  });
 
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
       <div>
+        {/* author */}
         <input
-          name="author"
-          value={author}
+          name="state"
+          value={state.author}
           onChange={(e) => {
-            console.log(e.target.value); // target의 값 = input에 입력되는 텍스트
-            console.log(e.target.name); // target의 이름
-            setAuthor(e.target.value); // author상태 변화시킴
+            console.log(e.target.value);
+            console.log(e.target.name);
+            setState(e.target.value);
           }}
         />
       </div>
@@ -22,9 +26,9 @@ const DiaryEditor = () => {
         {/* content */}
         <textarea
           name="content"
-          value={content}
+          value={state.content}
           onChange={(e) => {
-            setContent(e.target.value);
+            setState(e.target.value);
           }}
         />
       </div>
