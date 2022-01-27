@@ -17,7 +17,7 @@ const dummyList = [
     author: "Mina",
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    emotion: 3,
+    emotion: 5,
     created_date: new Date().getTime(),
   },
   {
@@ -25,7 +25,7 @@ const dummyList = [
     author: "Alicia",
     content:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    emotion: 3,
+    emotion: 1,
     created_date: new Date().getTime(),
   },
 ];
