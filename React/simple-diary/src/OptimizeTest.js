@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-// 리렌더링 시 프롭스가 각각 어떻게 되는 지 확인하기 위해 useEffect
+import React, { useEffect, useState } from "react";
 
-// 자식 컴포넌트
-const TextView = ({ text }) => {
+const TextView = React.memo(({ text }) => {
+  // prop text가 바뀌지 않으면 절대 렌더링되지 않음, count올릴 땐 count만 렌더링
   useEffect(() => {
     console.log(`Update :: Text :: ${text}`);
   });
   return <div>{text}</div>;
-};
+});
 
-const CountView = ({ count }) => {
+const CountView = React.memo(({ count }) => {
+  // prop count가 바뀌지 않으면 절대 렌더링되지 않음, text입력 시 text만 렌더링
   useEffect(() => {
     console.log(`Update :: Count :: ${count}`);
   });
   return <div>{count}</div>;
-};
+});
 
 const OptimizeTest = () => {
   // state생성
