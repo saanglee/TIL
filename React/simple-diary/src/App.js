@@ -9,8 +9,6 @@ function App() {
 
   const dataId = useRef(0);
 
-  // 함수 만들어서 API 호출하기
-  // fetch와 await를 함께 쓸것이기 때문에 async 키워드를 붙여준다. getData함수가 promise를 반환하는 비동기 함수되도록 함
   const getData = async () => {
     const res = await fetch(
       "https://jsonplaceholder.typicode.com/comments"
@@ -63,11 +61,26 @@ function App() {
       )
     );
   };
+  //=======================================================
+  const getDataAnalysis = () => {
+    console.log("일기 분석 시작");
+    const goodCount = data.filter((it) => it.emotion >= 3).length;
+    const badCount = data.length - goodCount;
+    const goodRatio = (goodCount / data.length) * 100.0;
+    return { goodCount, badCount, goodRatio };
+  };
+  // 함수 호출
+  const { goodCount, badCount, goodRatio } = getDataAnalysis();
 
   return (
     <div className="App">
       {/* <Lifecycle /> */}
+      {/* 일기 분석 렌더링 */}
       <DiaryEditor onCreate={onCreate} />
+      <div>전체 일기 개수: {data.length}개 </div>
+      <div>기분 좋은 일기 개수: {goodCount}개 </div>
+      <div>기분 나쁜 일기 개수: {badCount}개 </div>
+      <div>기분 좋은 일기 비율: {goodRatio}% </div>
       <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
   );
