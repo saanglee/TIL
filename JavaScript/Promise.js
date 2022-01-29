@@ -25,26 +25,14 @@ const f3 = (message) => {
   });
 };
 
-console.log("시작");
-console.time("Promise chaning");
-// resole함수를 실행하면서 넘겨준 값을 f2로 넘겨준다.
-// f2는 메세지(res)를 받아서 로그 찍어주고 promise를 반환, 이때 resolve함수로 전달한 값을 3번에서 사용
-f1()
-  .then((res) => f2(res))
-  .then((res) => f3(res))
-  .then((res) => console.log(res))
-  .catch(console.log)
-  .finally(() => {
-    // console.log("끝!");
-    console.timeEnd("Promise chaning");
-  });
-// ----------------------------------------------------------------------
-
-// Promise.all
-console.time("Promise.all");
-Promise.all([f1(), f2(), f3()]).then((res) => {
+// Promise.race
+console.time("x");
+Promise.race([f1(), f2(), f3()]).then((res) => {
   console.log(res);
-  console.timeEnd("Promise.all");
+  console.timeEnd("x");
 });
-// Promise.all([배열]) 배열 부분이 모두 완료 된 후에 then이 실행
-// Promise all은 한꺼번에 시작하고 모두 이행되면 값을 사용할 수 있다.
+
+// all과 사용방법 동일
+// all은 모든 작업이 완료될 때 까지 기다리지만, race는 하나라도 1등으로 완료되면 끝낸다.
+// 1번 주문 완료 후 실행 종료 - 이미 1번이 완료되었기 때문에 그 뒤로 무시
+// 용량이 큰 이미지들을 로딩하는데 그 중 하나라도 로딩 되면 그 이미지를 보여줄 때 이런 방식을 사용한다.
