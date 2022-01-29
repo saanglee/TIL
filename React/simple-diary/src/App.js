@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 // import Lifecycle from "./Lifecycle";
@@ -62,15 +62,17 @@ function App() {
     );
   };
   //=======================================================
-  const getDataAnalysis = () => {
+  const getDataAnalysis = useMemo(() => {
     console.log("일기 분석 시작");
     const goodCount = data.filter((it) => it.emotion >= 3).length;
     const badCount = data.length - goodCount;
     const goodRatio = (goodCount / data.length) * 100.0;
     return { goodCount, badCount, goodRatio };
-  };
-  // 함수 호출
-  const { goodCount, badCount, goodRatio } = getDataAnalysis();
+  }, [data.length]);
+  // data의 길이가 변화하지 않으면 useMemo 콜백함수 연산을 실행하지 않음!
+
+  // getDataAnalysis는 이제 함수가 아님! useMemo 콜백함수의 값!
+  const { goodCount, badCount, goodRatio } = getDataAnalysis;
 
   return (
     <div className="App">
