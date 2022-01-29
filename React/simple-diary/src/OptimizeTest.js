@@ -1,12 +1,18 @@
-// 컴포넌트 재사용하는 실습용 컴포넌트
 import { useEffect, useState } from "react";
+// 리렌더링 시 프롭스가 각각 어떻게 되는 지 확인하기 위해 useEffect
 
-// 자식 컴포넌트 2개 생성
+// 자식 컴포넌트
 const TextView = ({ text }) => {
-  return <div>{text}</div>; // text를 prop으로 받아 렌더링만
+  useEffect(() => {
+    console.log(`Update :: Text :: ${text}`);
+  });
+  return <div>{text}</div>;
 };
 
 const CountView = ({ count }) => {
+  useEffect(() => {
+    console.log(`Update :: Count :: ${count}`);
+  });
   return <div>{count}</div>;
 };
 
