@@ -1,12 +1,15 @@
 React/simple-diary/public/*.ico
 React/simple-diary/public/*.png
 basic.js
+JavaScript/*.json
 
 # node moduls
 React/simple-diary/node_modules/
 React/simple-diary-review/node_modules/
 React/React-exam1/node_modules/
 React/Udemy-React-package-example/node_modules/
+
+JavaScript/node_modules/
 
 # ETC
 JavaScript/async/
