@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
 import Counter from "./Counter";
+import UseRef from "./UseRef";
 
 function App() {
   const [data, setdata] = useState([]);
@@ -28,6 +29,7 @@ function App() {
   return (
     <div>
       <Counter />
+      <UseRef />
       <DiaryEditor onCreate={onCreate} />
       <DiaryList diaryList={data} />
     </div>
