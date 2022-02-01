@@ -1,7 +1,14 @@
 import "./App.css";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
+// import OptimizeTest from "./OptimizeTest";
 // import Lifecycle from "./Lifecycle";
 
 function App() {
@@ -13,7 +20,7 @@ function App() {
     const res = await fetch(
       "https://jsonplaceholder.typicode.com/comments"
     ).then((res) => res.json());
-    console.log(res);
+
     const initData = res.slice(0, 20).map((it) => {
       return {
         author: it.email,
@@ -30,7 +37,9 @@ function App() {
     getData();
   }, []);
 
-  const onCreate = (author, content, emotion) => {
+  //================================ onCreate - useCallback ================================
+
+  const onCreate = useCallback((author, content, emotion) => {
     const created_date = new Date().getTime();
     const newItem = {
       author,
@@ -40,30 +49,24 @@ function App() {
       id: dataId.current,
     };
     dataId.current += 1;
-    SetData([newItem, ...data]); // 새로운 데이터(new Item)를 맨위로, 그 다음에 기존 데이터들(...data)
-  };
+    SetData((data) => [newItem, ...data]); // 함수형 업데이트
+  }, []);
 
-  // onRemove함수 생성
-  const onRemove = (targetId) => {
-    console.log(`${targetId}번째 일기가 삭제되었습니다.`);
-    // targetId를 가진 아이템을 제외한 새로운 배열을 생성
-    const newDiaryList = data.filter((it) => it.id !== targetId);
-    console.log(newDiaryList);
-    // newDiaryList setData함수에 전달해서 data 상태를 바꿔주면 삭제 완료
-    SetData(newDiaryList);
-  };
+  //================================ onRemove - useCallback ================================
+  const onRemove = useCallback((targetId) => {
+    SetData((data) => data.filter((it) => it.id !== targetId));
+  }, []);
 
-  // 수정 기능 함수
-  const onEdit = (targetId, newContent) => {
-    SetData(
+  //================================ onEdit - useCallback ================================
+  const onEdit = useCallback((targetId, newContent) => {
+    SetData((data) =>
       data.map((it) =>
         it.id === targetId ? { ...it, content: newContent } : it
       )
     );
-  };
+  }, []);
   //=======================================================
   const getDataAnalysis = useMemo(() => {
-    console.log("일기 분석 시작");
     const goodCount = data.filter((it) => it.emotion >= 3).length;
     const badCount = data.length - goodCount;
     const goodRatio = (goodCount / data.length) * 100.0;
@@ -76,8 +79,9 @@ function App() {
 
   return (
     <div className="App">
+      {/* <OptimizeTest /> */}
       {/* <Lifecycle /> */}
-      {/* 일기 분석 렌더링 */}
+
       <DiaryEditor onCreate={onCreate} />
       <div>전체 일기 개수: {data.length}개 </div>
       <div>기분 좋은 일기 개수: {goodCount}개 </div>

@@ -1,7 +1,6 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const DiaryEditor = ({ onCreate }) => {
-  // 1. prop로 onCreate함수 받아옴
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -29,11 +28,8 @@ const DiaryEditor = ({ onCreate }) => {
     }
     // 2. 전달받은 onCreate함수 호출
     onCreate(state.author, state.content, state.emotion); // 일기 요소들 받아옴
-    console.log(state);
     alert("저장! 성공!😫");
-
-    // 저장 후에도 작성 란에 쓴 내용 남아있음 !
-    // 3. 그래서 저장 후 setState통해 초기화 해주기
+    // 저장 후 setState통해 초기화 해주기
     setState({
       author: "",
       content: "",
@@ -80,4 +76,4 @@ const DiaryEditor = ({ onCreate }) => {
     </div>
   );
 };
-export default DiaryEditor;
+export default React.memo(DiaryEditor);
