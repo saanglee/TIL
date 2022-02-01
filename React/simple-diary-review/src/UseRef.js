@@ -1,27 +1,35 @@
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 
 const UseRef = () => {
-  const [count, setCount] = useState(0);
-  const countRef = useRef(0); // {curreng : 1}
-  // console.log(countRef); // ref객체 출력
-  console.log("rendering...."); // state변경 될 때 마다 출력됨
-
-  const increaseCountState = () => {
-    setCount(count + 1);
+  const [renderer, setRenderer] = useState(0);
+  const doRendering = () => {
+    setRenderer(renderer + 1);
   };
 
-  const increaseCountRef = () => {
-    console.log("Ref: ", countRef.current);
+  const countRef = useRef(0);
+  let countVar = 0;
+
+  const increaseRef = () => {
     countRef.current += 1;
+    console.log(countRef.current);
+  };
+  const increaseVar = () => {
+    countVar += 1;
+    console.log(countVar);
+  };
+
+  const printResults = () => {
+    console.log(`ref: ${countRef.current}, var: ${countVar} `);
   };
 
   return (
     <div style={{ padding: 30 }}>
-      <p>State: {count}</p>
       <p>Ref: {countRef.current}</p>
-
-      <button onClick={increaseCountState}>State 올려~!</button>
-      <button onClick={increaseCountRef}>Ref 올려~!</button>
+      <p>Var: {countVar}</p>
+      <button onClick={doRendering}>Render!!</button>
+      <button onClick={increaseRef}>Ref 올려</button>
+      <button onClick={increaseVar}>Var 올려</button>
+      <button onClick={printResults}>Ref Var 값 출력</button>
     </div>
   );
 };
