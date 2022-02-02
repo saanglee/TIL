@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
   const authorInput = useRef(); // 왜 Ref썼지?? 아 포커스 주려고
   const contentInput = useRef();
 
@@ -27,9 +27,15 @@ const DiaryEditor = () => {
       contentInput.current.focus();
       return;
     }
-
-    console.log(state);
+    onCreate(state.author, state.content, state.emotion); // onCreate인자로 작성한 내용 들어감
+    // console.log(state);
     alert("저장 성공!");
+    setState({
+      // 저장 후 입력칸 초기화
+      author: "",
+      content: "",
+      emotion: 1,
+    });
   };
 
   return (
