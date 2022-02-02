@@ -8,7 +8,6 @@
   border: 1px solid gray;
   text-align: center;
   padding: 20px;
-  margin: 20px;
 }
 
 .DiaryEditor input,
@@ -20,7 +19,6 @@ textarea {
 .DiaryEditor input {
   padding: 10px;
 }
-
 .DiaryEditor textarea {
   padding: 10px;
   height: 150px;
@@ -32,15 +30,34 @@ textarea {
   margin-bottom: 20px;
 }
 
-/* List */
-
-.DairyList {
-  margin: 20px;
+.DiaryEditor button {
+  width: 500px;
+  padding: 10px;
+  cursor: pointer;
 }
+
+/* List  */
+
+.DiaryList {
+  border: 1px solid gray;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.DiaryList h2 {
+  text-align: center;
+}
+
+/* ITEM */
+
 .DiaryItem {
   background-color: rgb(240, 240, 240);
+  margin-bottom: 10px;
   padding: 20px;
-  margin-bottom: 20px;
+}
+
+.DiaryItem span {
+  margin-right: 10px;
 }
 
 .DiaryItem .info {
@@ -48,13 +65,16 @@ textarea {
   padding-bottom: 10px;
   margin-bottom: 10px;
 }
-
 .DiaryItem .date {
   color: gray;
 }
 
 .DiaryItem .content {
-  font-weight: bold;
   margin-bottom: 30px;
   margin-top: 30px;
+  font-weight: bold;
+}
+
+.DiaryItem textarea {
+  padding: 10px;
 }

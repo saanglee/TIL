@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 
-const DiaryEditor = ({ onCreate }) => {
-  const aouthorInput = useRef();
+const DiaryEditor = () => {
+  const authorInput = useRef(); // 왜 Ref썼지?? 아 포커스 주려고
   const contentInput = useRef();
 
   const [state, setState] = useState({
@@ -9,36 +9,27 @@ const DiaryEditor = ({ onCreate }) => {
     content: "",
     emotion: 1,
   });
-
+  // input, textarea, select의 onChange에 들어갈 함수
   const handleChangeState = (e) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
   };
-
-  // 저장버튼 누른 후 일기 아이템 추가 - onCreate함수 호출
-  const handleSubmit = (e) => {
+  // 저장버튼 onClick 함수
+  const handleSubmit = () => {
     if (state.author.length < 1) {
-      aouthorInput.current.focus();
+      authorInput.current.focus();
       return;
     }
+
     if (state.content.length < 5) {
       contentInput.current.focus();
       return;
     }
 
-    onCreate(state.author, state.content, state.emotion);
-
     console.log(state);
-    alert("저장성공!");
-
-    // 저장 후  저자, 내용 쓰는 칸 초기화
-    setState({
-      author: "",
-      content: "",
-      emotion: 1,
-    });
+    alert("저장 성공!");
   };
 
   return (
@@ -46,22 +37,26 @@ const DiaryEditor = ({ onCreate }) => {
       <h2>오늘의 일기</h2>
       <div>
         <input
-          ref={aouthorInput}
-          name="author"
+          ref={authorInput}
           value={state.author}
           onChange={handleChangeState}
+          name="author"
+          placeholder="작성자"
+          type="text"
         />
       </div>
       <div>
         <textarea
           ref={contentInput}
-          name="content"
           value={state.content}
           onChange={handleChangeState}
+          name="content"
+          placeholder="일기"
+          type="text"
         />
       </div>
       <div>
-        <span>오늘의 감정 점수</span>
+        <span>오늘의 감정점수 : </span>
         <select
           name="emotion"
           value={state.emotion}
@@ -80,5 +75,4 @@ const DiaryEditor = ({ onCreate }) => {
     </div>
   );
 };
-
 export default DiaryEditor;
