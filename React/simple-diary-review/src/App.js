@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useMemo, useEffect, useRef, useState } from "react";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
-import Lifecycle from "./components/Lifecycle";
+import OptimizeTest from "./components/OptimizeTest";
 
 const App = () => {
   // 일기 아이템 관리할 state
@@ -68,7 +68,7 @@ const App = () => {
   };
   return (
     <div className="App">
-      <Lifecycle />
+      <OptimizeTest />
       <DiaryEditor onCreate={onCreate} />
       <div>전체 일기 개수: {data.length}개</div>
       <div>기분 좋은 일기 개수: {goodCount}개</div>
