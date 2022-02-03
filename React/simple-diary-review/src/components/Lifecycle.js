@@ -1,49 +1,27 @@
 import React, { useState, useEffect } from "react";
 // useEffect, Component Lifecycle 개념 익히기
 
-const Lifecycle = () => {
-  const [count, setCount] = useState(0);
-  const [text, setText] = useState("");
+const UnmountTest = () => {
   useEffect(() => {
     console.log("Mount!!");
+    return () => {
+      console.log("Unmount~~~");
+    };
   }, []);
+  return <div>Unmount Testing Component😉</div>;
+};
 
-  useEffect(() => {
-    console.log("Update⭐️");
-  });
-
-  useEffect(() => {
-    console.log(`"count" state is updated : ${count}`);
-    if (count > 5) {
-      alert("count가 5를 넘었습니다. 0으로 초기화 합니다.");
-      setCount(0);
-    }
-  }, [count]);
-
-  useEffect(() => {
-    console.log(`"text" state is update ${text}`);
-  }, [text]);
+const Lifecycle = () => {
+  const [isVisible, setisVisible] = useState(false);
+  const toggle = () => {
+    setisVisible(!isVisible);
+  };
 
   return (
     <div style={{ padding: 20 }}>
-      <div>
-        {count}
-        <button
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        >
-          ➕
-        </button>
-      </div>
-      <div>
-        <input
-          value={text}
-          onChange={(e) => {
-            setText(e.target.value);
-          }}
-        />
-      </div>
+      <button onClick={toggle}>ON/OFF</button>
+      {isVisible && <UnmountTest />}
+      {/* isVisible이 true일 때 UnmountTest 컴포넌트 렌더링 */}
     </div>
   );
 };
