@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useRef, useState } from "react";
 import DiaryEditor from "./DiaryEditor";
 import DiaryList from "./DiaryList";
+import Lifecycle from "./components/Lifecycle";
 
 const App = () => {
   // 일기 아이템 관리할 state
@@ -39,6 +40,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Lifecycle />
       <DiaryEditor onCreate={onCreate} />
       <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
