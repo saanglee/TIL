@@ -1,9 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 const DiaryEditor = ({ onCreate }) => {
-  useEffect(() => {
-    console.log("DiaryEditor Render!");
-  });
   const authorInput = useRef(); // 왜 Ref썼지?? 아 포커스 주려고
   const contentInput = useRef();
 

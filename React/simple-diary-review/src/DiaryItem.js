@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const DiaryItem = ({
   onEdit,
@@ -9,6 +9,10 @@ const DiaryItem = ({
   emotion,
   created_date,
 }) => {
+  useEffect(() => {
+    console.log(`${id}번째 아이템 렌더⭐️`);
+  });
+
   const [localContent, setLocalContent] = useState(content); // 수정 내용 저장할 State
   // 수정 State 및 수정버튼 onClick 함수
   const [isEdit, setIsEdit] = useState(false); // true 수정중, false 수정중 아님
@@ -80,4 +84,4 @@ const DiaryItem = ({
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);
