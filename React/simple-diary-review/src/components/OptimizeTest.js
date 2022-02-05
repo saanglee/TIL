@@ -1,45 +1,31 @@
 // 컴포넌트 재사용 연습
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 // 자식 컴포넌트
-const TextView = React.memo(({ txt }) => {
-  useEffect(() => {
-    console.log(`Update :: txt :: ${txt}`); // 렌더링 마다 콜백 호출
-  });
-  return <div>{txt}</div>;
-});
-const CountView = React.memo(({ count }) => {
-  useEffect(() => {
-    console.log(`Update :: count :: ${count}`); // 렌더링 마다 콜백 호출
-  });
+const CounterA = React.memo(({ count }) => {
   return <div>{count}</div>;
+});
+const CounterB = React.memo(({ obj }) => {
+  return <div>{obj.count}</div>;
 });
 
 const OptimizeTest = () => {
   const [count, setCount] = useState(1);
-  const [txt, setTxt] = useState("");
+  const [obj, setObj] = useState({ count: 1 });
+
   return (
     <div style={{ padding: 20 }}>
       <div>
-        <h2>count</h2>
-        <CountView count={count} />
-        <button
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        >
-          ➕
-        </button>
+        <h2>Counter A</h2>
+        <CounterA count={count} />
+        <button onClick={setCount(count)}>A btn</button>
+        {/* prop으로 같은 값이 전달됨 */}
       </div>
       <div>
-        <h2>text</h2>
-        <TextView txt={txt} />
-        <input
-          value={txt}
-          onChange={(e) => {
-            setTxt(e.target.value);
-          }}
-        />
+        <h2>Counter B</h2>
+        <CounterB obj={obj} />
+        <button onClick={setObj({ count: obj.count })}>B btn</button>
+        {/* prop으로 같은 값이 전달됨 */}
       </div>
     </div>
   );
