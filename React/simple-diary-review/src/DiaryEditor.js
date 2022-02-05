@@ -1,6 +1,9 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 const DiaryEditor = ({ onCreate }) => {
+  useEffect(() => {
+    console.log("DiaryEditor Render!");
+  });
   const authorInput = useRef(); // 왜 Ref썼지?? 아 포커스 주려고
   const contentInput = useRef();
 
@@ -81,4 +84,4 @@ const DiaryEditor = ({ onCreate }) => {
     </div>
   );
 };
-export default DiaryEditor;
+export default React.memo(DiaryEditor);
