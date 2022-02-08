@@ -1,3 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap"); /* 폰트를 가져오는 API 웹요청 */
+
+body {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center; /* body태그 안의 요소들을 body태그 기준으로 가운데에 둠 */
+  align-items: center; /* display flex일 때 세로축을 기준으로 가운데 둔다. */
+  font-family: "Nanum Pen Script"; /* default font */
+  min-height: 100vh; /* viewport height? 웹스크린의 실제크기의 100%를 최소 높이로 갖는다? */
+  margin: 0px;
+}
+
+/* 미디어 쿼리 ? 화면이 어느정도 넓이냐에 따라 규칙을 정해주는 css도구 - 반응형 웹 작성 */
+@media (min-width: 650px) {
+  /* min-width니까 웹 브라우저 화면이 650px"이상"일 때만 {}의 규칙이 적용됨 */
+  .App {
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
+    /* 브라우저 화면 너비가 650px이하일 때 App컴포넌트의 너비는 90viewport width를 갖는다 - 현재 화면에서 90%를 차지한다. */
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
 .App {
-  padding: 20px;
+  min-height: 100vh; /*화면에서 높이 100% 차지*/
+  padding-left: 20px;
+  padding-right: 20px;
 }
