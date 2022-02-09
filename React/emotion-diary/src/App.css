@@ -35,3 +35,36 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+/* MyButton */
+
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px; /* 가독성을 위해 상하좌우 나눠서 씀 */
+
+  font-size: 18px;
+
+  white-space: nowrap; /* 버튼 안의 글자가 잘려서 두 줄이 되지 않도록? 해주는 속성 ? */
+  font-family: "Nanum Pen Script";
+}
+
+.MyButton_default {
+  background-color: #ececec;
+  color: black;
+}
+
+.MyButton_positive {
+  background-color: #64c964;
+  color: white;
+}
+
+.MyButton_negative {
+  background-color: #fb565f;
+  color: white;
+}
