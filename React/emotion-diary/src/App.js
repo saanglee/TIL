@@ -1,44 +1,44 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { useReducer } from "react";
+
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Edit from "./pages/Edit";
 import Diary from "./pages/Diary";
 
-// COMPONENTS
-import MyButton from "./components/MyButton";
-import MyHeader from "./components/MyHeader";
+const reducer = (state, action) => {
+  let newState = [];
+  switch (action.type) {
+    case "INIT": {
+      return action.data;
+    }
+    case "CREATE": {
+      const newItem = { ...action.data };
+      newState = [newItem, ...state];
+      break;
+    }
+    case "REMOVE": {
+      newState = state.filter((it) => it.id !== action.targetId);
+      break;
+    }
+    case "EDIT": {
+      newState = state.map((it) =>
+        it.id === action.data.id ? { ...action.data } : it
+      );
+      break;
+    }
+    default:
+      return state;
+  }
+};
 
 function App() {
+  const [data, dispatch] = useReducer(reducer, []);
   return (
     <BrowserRouter>
       <div className="App">
-        <MyHeader
-          headText="App"
-          leftChild={
-            <MyButton text={"왼쪽 버튼"} onClick={() => alert("왼쪽 클릭")} />
-          }
-          rightChild={
-            <MyButton
-              text={"오른쪽 버튼"}
-              onClick={() => alert("오른쪽 클릭")}
-            />
-          }
-        />
-        <h2>App.js</h2>
-        <MyButton
-          text={"버튼"}
-          onClick={() => alert("Button Click!")}
-          type={"positive"}
-        />
-        <MyButton
-          text={"버튼"}
-          onClick={() => alert("Button Click!")}
-          type={"negative"}
-        />
-        <MyButton text={"버튼"} onClick={() => alert("Button Click!")} />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new" element={<New />} />
