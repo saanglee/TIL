@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { useReducer } from "react";
+import React, { useReducer, useRef } from "react";
 
 import Home from "./pages/Home";
 import New from "./pages/New";
@@ -36,6 +36,34 @@ const reducer = (state, action) => {
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
+  const dataId = useRef(0);
+  // CREATE
+  const onCreate = (date, content, emotion) => {
+    dispatch({
+      type: "CREATE",
+      data: {
+        id: dataId.current,
+        date: new Date(date).getTime(),
+        content,
+        emotion,
+      },
+    });
+    dataId.current += 1;
+  };
+  // REMOVE
+  const onRemove = (targetId) => {
+    dispatch({ type: "REMOVE", id: targetId });
+  };
+  // EDIT
+  const onEdit = (targetId, date, content, emotion) => {
+    dispatch({
+      type: "EDIT",
+      id: targetId,
+      date: new Date(date).getTime(),
+      content,
+      emotion,
+    });
+  };
   return (
     <BrowserRouter>
       <div className="App">
