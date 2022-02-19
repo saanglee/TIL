@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 
 function Hello() {
-  useEffect(() => {
-    console.log("created :)");
-    // 컴포넌트 없어질 때 실행 됨
-    return () => console.log("destroyed :(");
-  }, []);
+  function hiFn() {
+    console.log("create :)");
+    return byeFn;
+  }
+  function byeFn() {
+    console.log("bye :(");
+  }
+  useEffect(hiFn, []);
   return <h1>hello</h1>;
 }
 
