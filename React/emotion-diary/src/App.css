@@ -145,33 +145,53 @@ header button {
   display: flex;
   justify-content: space-between;
 }
-.DiaryList .emotion_img_wrapper {
+.DiaryItem .emotion_img_wrapper {
   cursor: pointer;
   min-width: 120px;
   height: 80px;
   display: flex;
   justify-content: center;
 }
-.DiaryList .emotion_img_wrapper1 {
+.DiaryItem .emotion_img_wrapper1 {
   background-color: #64c964;
 }
 
-.DiaryList .emotion_img_wrapper2 {
+.DiaryItem .emotion_img_wrapper2 {
   background-color: #9dd772;
 }
 
-.DiaryList .emotion_img_wrapper3 {
+.DiaryItem .emotion_img_wrapper3 {
   background-color: #fdce17;
 }
 
-.DiaryList .emotion_img_wrapper4 {
+.DiaryItem .emotion_img_wrapper4 {
   background-color: #fd8446;
 }
 
-.DiaryList .emotion_img_wrapper5 {
+.DiaryItem .emotion_img_wrapper5 {
   background-color: #fd565f;
 }
 
-.DiaryList .emotion_img_wrapper img {
+.DiaryItem .emotion_img_wrapper img {
   width: 50%;
+}
+
+.DiaryItem .info_wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.DiaryItem .diary_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.DiaryItem .diary_content_preview {
+  font-size: 18px;
+}
+
+.DiaryItem .btn_wrapper {
+  min-width: 70px;
 }
