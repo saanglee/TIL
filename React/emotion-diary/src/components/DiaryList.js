@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import DiaryItem from "./DiaryItem";
 import MyButton from "./MyButton";
 // 시간순 정렬 필터 : 최신순, 오래된 순
 const sortOptionList = [
@@ -96,11 +97,8 @@ const DiaryList = ({ diaryList }) => {
       </div>
 
       {getprocessedDiaryList().map((it) => (
-        <div key={it.id}>
-          {it.content} {it.emotion}
-        </div>
+        <DiaryItem key={it.id} {...it} />
       ))}
-      {/* 리스트로 렌더링하는게 아니라 getprocessedDiaryList함수의 결과값을 렌더하도록 바꿔주면 최신순, 오래된 순의 리스트를 볼 수 있음*/}
     </div>
   );
 };
