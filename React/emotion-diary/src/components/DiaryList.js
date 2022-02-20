@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
+import MyButton from "./MyButton";
 // 시간순 정렬 필터 : 최신순, 오래된 순
 const sortOptionList = [
   { value: "latest", name: "최신순" },
@@ -16,7 +18,11 @@ const filterOptionList = [
 // optionList.. ???? onChange이벤트 발생 시 이벤트객체의 타겟의 value를 전달, onChange의 메서드인 setSortType호출 - 오래된순 선택하면 oldest, 최신순 선택하면 latest
 const ControlMenu = ({ value, onChange, optionList }) => {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
+    <select
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="ControlMenu"
+    >
       {optionList.map((it, idx) => (
         <option key={idx} value={it.value}>
           {it.name}
@@ -29,8 +35,8 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 // =============================================================
 
 const DiaryList = ({ diaryList }) => {
-  // 1. 정렬 기준 저장할 State - 초기값 ='최신순' latest
-  // ControlMenu의 역할 : sorType정렬 기준을 변화시키는 select의 역할
+  const navigate = useNavigate();
+
   const [sortType, setSortType] = useState("lastest");
 
   // 감정필터의 상태를 저장할 state
@@ -66,18 +72,29 @@ const DiaryList = ({ diaryList }) => {
   };
 
   return (
-    <div>
-      {/* 2. value, onChange 전달 | 4. optionLst전달*/}
-      <ControlMenu
-        value={sortType}
-        onChange={setSortType}
-        optionList={sortOptionList}
-      />
-      <ControlMenu
-        value={filter}
-        onChange={setFilter}
-        optionList={filterOptionList}
-      />
+    <div className="DiaryList">
+      <div className="menu_wrapper">
+        <div className="left_cal">
+          <ControlMenu
+            value={sortType}
+            onChange={setSortType}
+            optionList={sortOptionList}
+          />
+          <ControlMenu
+            value={filter}
+            onChange={setFilter}
+            optionList={filterOptionList}
+          />
+        </div>
+        <div className="right_cal">
+          <MyButton
+            type={"positive"}
+            text={"새 일기 쓰기"}
+            onClick={() => navigate("/new")}
+          />
+        </div>
+      </div>
+
       {getprocessedDiaryList().map((it) => (
         <div key={it.id}>
           {it.content} {it.emotion}

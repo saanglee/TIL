@@ -102,3 +102,36 @@ header .head_btn_right {
 header button {
   font-family: "Nanum Pen Script";
 }
+
+/* DiaryList */
+.DiaryList .menu_wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  display: flex; /* 두개의 div(필터랑 버튼)를 한 줄로 바꿔준다 */
+  justify-content: space-between;
+}
+
+.DiaryList .menu_wrapper .right_col {
+  flex-grow: 1; /* 남은 영역 전체 넓이를 차지하게 됨 */
+}
+.DiaryList .menu_wrapper .right_col button {
+  width: 100%;
+}
+
+/* 셀렉트 두개(필터) 수정 */
+
+.DiaryList .ControlMenu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #efefef;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+}
