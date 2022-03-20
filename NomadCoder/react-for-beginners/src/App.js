@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 
-function Hello() {
-  function hiFn() {
-    console.log("create :)");
-    return byeFn;
-  }
-  function byeFn() {
-    console.log("bye :(");
-  }
-  useEffect(hiFn, []);
-  return <h1>hello</h1>;
-}
-
 function App() {
-  const [showing, setShowing] = useState(false);
-  const onClick = () => setShowing((prev) => !prev);
+  const [toDo, setToDo] = useState("");
+  const onChange = (event) => setToDo(event.target.value);
+  const onSubmit = (event) => {
+    event.preventDefault(); // form태그 안의 button 누르면 submit 됨 (기본값) - 이거 막는 함수 onSubmit
+    if(toDo==""){return} 
+    setToDo(""); // 비워줌 
+  };
   return (
     <div>
-      {showing ? <Hello /> : null}
-      <button onClick={onClick}> {showing ? "Hide" : "Show"} </button>
+      <form onSubmit={onSubmit}>
+        <input
+          value={toDo}
+          onChange={onChange}
+          type="type"
+          placeholder="Write your to do..."
+        />
+        <button>Add To Do</button>
+      </form>
     </div>
   );
 }
