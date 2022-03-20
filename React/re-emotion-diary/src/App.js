@@ -1,3 +1,5 @@
+import { useReducer } from "react";
+
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Edit from "./pages/Edit";
@@ -6,11 +8,15 @@ import Diary from "./pages/Diary";
 import Home from "./pages/Home";
 import RouteTest from "./components/RouteTest";
 
-// COMPONENTS
-import MyButton from "./components/MyButton";
-import MyHeader from "./components/MyHeader";
+import Reducer from "./Reducer";
+
+const reducer = (state, action) => {
+  return state;
+};
 
 function App() {
+  const [data, dispatch] = useReducer(reducer, []);
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -19,6 +25,7 @@ function App() {
           <Route path="/new" element={<New />} />
           <Route path="/edit" element={<Edit />} />
           <Route path="/diary/:id" element={<Diary />} />
+          <Route path="/reducer" element={<Reducer />} />
         </Routes>
         <RouteTest />
       </div>
