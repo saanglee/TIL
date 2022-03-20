@@ -1,52 +1,81 @@
 import React, { useState, useReducer } from "react";
-
-const ACTION_TYPES = {
-  DEPOSIT: "deposit",
-  WITHDRAW: "withdraw",
-};
+import Students from "./Students";
 
 const reducer = (state, action) => {
-  console.log("reducer가 일을 함!", state, action);
   switch (action.type) {
-    case ACTION_TYPES.DEPOSIT:
-      return state + action.payload;
-    case ACTION_TYPES.WITHDRAW:
-      return state - action.payload;
+    case "add-student":
+      const name = action.payload.name;
+      const newStudent = {
+        id: Date.now(),
+        name,
+        isHere: false,
+      };
+      return {
+        count: state.count + 1,
+        students: [...state.students, newStudent],
+      };
+
+    case "delete-student":
+      return {
+        count: state.count - 1,
+        students: state.students.filter(
+          (student) => student.id !== action.payload.id
+        ),
+      };
+
+    case "mark-student":
+      return {
+        count: state.count,
+        students: state.students.map((student) => {
+          if (student.id === action.payload.id) {
+            return { ...student, isHere: !student.isHere };
+          }
+          return student;
+        }),
+      };
     default:
       return state;
   }
 };
 
+const initialState = {
+  count: 0,
+  students: [],
+};
+
 const Reducer = () => {
-  const [number, setNumber] = useState(0);
-  const [money, dispatch] = useReducer(reducer, 0);
+  const [name, setName] = useState("");
+  const [studentInfo, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="App">
-      <h1>useReducer 은행</h1>
-      <p>잔고: {money}원</p>
+    <div>
+      <h1>출석부</h1>
+      <p>total student number : {initialState.count}</p>
       <input
-        type="number"
-        value={number}
-        onChange={(e) => {
-          setNumber(parseInt(e.target.value));
-        }}
-        step="1000"
+        type="text"
+        placeholder="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
       />
       <button
         onClick={() => {
-          dispatch({ type: ACTION_TYPES.DEPOSIT, payload: number });
+          dispatch({ type: "add-student", payload: { name } });
         }}
       >
-        예금
+        ADD
       </button>
-      <button
-        onClick={() => {
-          dispatch({ type: ACTION_TYPES.WITHDRAW, payload: number });
-        }}
-      >
-        출금
-      </button>
+
+      {studentInfo.students.map((student) => {
+        return (
+          <Students
+            key={student.id}
+            name={student.name}
+            dispatch={dispatch}
+            id={student.id}
+            isHere={student.isHere}
+          />
+        );
+      })}
     </div>
   );
 };
