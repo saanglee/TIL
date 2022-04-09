@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import MyButton from "./MyButton";
+import DiaryItem from "./DiaryItem";
 // filter 1
 const sortOptionList = [
   { value: "latest", name: "최신순" },
@@ -96,9 +97,8 @@ const DiaryList = ({ diaryList }) => {
 
       {/* getProcessedDiaryList함수의 결과값을 렌더링 */}
       {getProcessedDiaryList().map((it) => (
-        <div key={it.id}>
-          {it.content} {it.emotion}
-        </div>
+        // DiaryItem 컴포넌트 렌더링할 곳
+        <DiaryItem key={it.id} {...it} />
       ))}
     </div>
   );
