@@ -16,7 +16,11 @@ const filterOptionList = [
 
 const ControlMenu = ({ value, onChange, optionList }) => {
   return (
-    <select value={value} onChange={(e) => onChange(e.target.value)}>
+    <select
+      className="ControlMenu"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
       {optionList.map((it, idx) => (
         <option key={idx} value={it.value}>
           {it.name}
@@ -67,23 +71,28 @@ const DiaryList = ({ diaryList }) => {
   };
 
   return (
-    <div>
-      <ControlMenu // filter 1
-        value={sortType}
-        onChange={setSortType}
-        optionList={sortOptionList}
-      />
+    <div className="DiaryList">
+      <div className="menu_wrapper">
+        <div className="left_col">
+          <ControlMenu // filter 1
+            value={sortType}
+            onChange={setSortType}
+            optionList={sortOptionList}
+          />
 
-      <ControlMenu // filter 2
-        onChange={setFilter}
-        optionList={filterOptionList}
-      />
-
-      <MyButton
-        type={"positive"}
-        text={"새 일기쓰기"}
-        onClick={() => navigate("/new")}
-      />
+          <ControlMenu // filter 2
+            onChange={setFilter}
+            optionList={filterOptionList}
+          />
+        </div>
+        <div className="right_col">
+          <MyButton
+            type={"positive"}
+            text={"새 일기쓰기"}
+            onClick={() => navigate("/new")}
+          />
+        </div>
+      </div>
 
       {/* getProcessedDiaryList함수의 결과값을 렌더링 */}
       {getProcessedDiaryList().map((it) => (
