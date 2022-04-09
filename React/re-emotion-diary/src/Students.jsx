@@ -1,5 +1,11 @@
 import React from "react";
 
+const ACTION_TYPES = {
+  ADD: "add-student",
+  DELETE: "delete-student",
+  MARK: "mark-student",
+};
+
 const Students = ({ name, dispatch, id, isHere }) => {
   return (
     <div>
@@ -9,14 +15,14 @@ const Students = ({ name, dispatch, id, isHere }) => {
           color: isHere ? "gray" : "black",
         }}
         onClick={() => {
-          dispatch({ type: "mark-student", payload: { id } });
+          dispatch({ type: ACTION_TYPES.MARK, payload: { id } });
         }}
       >
         {name}
       </span>
       <button
         onClick={() => {
-          dispatch({ type: "delete-student", payload: { id } });
+          dispatch({ type: ACTION_TYPES.DELETE, payload: { id } });
         }}
       >
         Delete

@@ -1,9 +1,15 @@
 import React, { useState, useReducer } from "react";
 import Students from "./Students";
 
+const ACTION_TYPES = {
+  ADD: "add-student",
+  DELETE: "delete-student",
+  MARK: "mark-student",
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
-    case "add-student":
+    case ACTION_TYPES.ADD:
       const name = action.payload.name;
       const newStudent = {
         id: Date.now(),
@@ -15,7 +21,7 @@ const reducer = (state, action) => {
         students: [...state.students, newStudent],
       };
 
-    case "delete-student":
+    case ACTION_TYPES.DELETE:
       return {
         count: state.count - 1,
         students: state.students.filter(
@@ -23,7 +29,7 @@ const reducer = (state, action) => {
         ),
       };
 
-    case "mark-student":
+    case ACTION_TYPES.MARK:
       return {
         count: state.count,
         students: state.students.map((student) => {
@@ -50,7 +56,7 @@ const Reducer = () => {
   return (
     <div>
       <h1>출석부</h1>
-      <p>total student number : {initialState.count}</p>
+      <p>total student number : {studentInfo.count}</p>
       <input
         type="text"
         placeholder="name"
@@ -59,7 +65,7 @@ const Reducer = () => {
       />
       <button
         onClick={() => {
-          dispatch({ type: "add-student", payload: { name } });
+          dispatch({ type: ACTION_TYPES.ADD, payload: { name } });
         }}
       >
         ADD
