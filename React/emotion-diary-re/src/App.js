@@ -1,6 +1,7 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useEffect, useReducer, useRef } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import React, { useReducer, useRef } from "react";
 
 import Home from "./pages/Home";
 import New from "./pages/New";
@@ -31,31 +32,24 @@ const reducer = (state, action) => {
     default:
       return state;
   }
-  localStorage.setItem("diary", JSON.stringify(newState));
-  return newState;
 };
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
+const dummyData = [
+  { id: 1, emotion: 1, content: "오늘의 일기 1번", date: 1644737154504 },
+  { id: 2, emotion: 3, content: "오늘의 일기 2번", date: 1644737154505 },
+  { id: 3, emotion: 4, content: "오늘의 일기 3번", date: 1644737154506 },
+  { id: 4, emotion: 5, content: "오늘의 일기 4번", date: 1644737154507 },
+  { id: 5, emotion: 2, content: "오늘의 일기 5번", date: 1644737154508 },
+];
+
 function App() {
-  const [data, dispatch] = useReducer(reducer, []);
-
-  useEffect(() => {
-    const localData = localStorage.getItem("diary");
-    if (localData) {
-      const diaryList = JSON.parse(localData).sort(
-        // 내림차순 정렬
-        (a, b) => parseInt(b.id) - parseInt(a.id)
-      );
-      if (diaryList.length >= 1) {
-        dataId.current = parseInt(diaryList[0].id) + 1;
-        dispatch({ type: "INIT", data: diaryList });
-      }
-    }
-  }, []);
+  const [data, dispatch] = useReducer(reducer, dummyData);
+  console.log(new Date().getTime());
   const dataId = useRef(0);
-
+  // CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
       type: "CREATE",
@@ -68,29 +62,28 @@ function App() {
     });
     dataId.current += 1;
   };
-
+  // REMOVE
   const onRemove = (targetId) => {
-    dispatch({ type: "REMOVE", targetId });
+    dispatch({ type: "REMOVE", id: targetId });
   };
+  // EDIT
   const onEdit = (targetId, date, content, emotion) => {
     dispatch({
       type: "EDIT",
-      data: {
-        id: targetId,
-        date: new Date(date).getTime(),
-        content,
-        emotion,
-      },
+      id: targetId,
+      date: new Date(date).getTime(),
+      content,
+      emotion,
     });
   };
-
   return (
     <DiaryStateContext.Provider value={data}>
+      {/* value = 일기 데이터 */}
       <DiaryDispatchContext.Provider
         value={{
           onCreate,
-          onEdit,
           onRemove,
+          onEdit,
         }}
       >
         <BrowserRouter>
@@ -98,7 +91,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
-              <Route path="/edit/:id" element={<Edit />} />
+              <Route path="/edit" element={<Edit />} />
               <Route path="/diary/:id" element={<Diary />} />
             </Routes>
           </div>

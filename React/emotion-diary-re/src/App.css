@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Yeon+Sung&display=swap"); /* 폰트를 가져오는 API 웹요청 */
+
+body {
+  background-color: #f6f6f6;
+  display: flex;
+  justify-content: center; /* body태그 안의 요소들을 body태그 기준으로 가운데에 둠 */
+  align-items: center; /* display flex일 때 세로축을 기준으로 가운데 둔다. */
+  font-family: "Nanum Pen Script"; /* default font */
+  min-height: 100vh; /* viewport height? 웹스크린의 실제크기의 100%를 최소 높이로 갖는다? */
+  margin: 0px;
+}
+
+/* 미디어 쿼리 ? 화면이 어느정도 넓이냐에 따라 규칙을 정해주는 css도구 - 반응형 웹 작성 */
+@media (min-width: 650px) {
+  /* min-width니까 웹 브라우저 화면이 650px"이상"일 때만 {}의 규칙이 적용됨 */
+  .App {
+    width: 640px;
+  }
+}
+
+@media (max-width: 650px) {
+  .App {
+    width: 90vw;
+    /* 브라우저 화면 너비가 650px이하일 때 App컴포넌트의 너비는 90viewport width를 갖는다 - 현재 화면에서 90%를 차지한다. */
+  }
+}
+
+#root {
+  background-color: white;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.App {
+  min-height: 100vh; /*화면에서 높이 100% 차지*/
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* MyButton */
+
+.MyButton {
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px; /* 가독성을 위해 상하좌우 나눠서 씀 */
+
+  font-size: 18px;
+
+  white-space: nowrap; /* 버튼 안의 글자가 잘려서 두 줄이 되지 않도록? 해주는 속성 ? */
+  font-family: "Nanum Pen Script";
+}
+
+.MyButton_default {
+  background-color: #ececec;
+  color: black;
+}
+
+.MyButton_positive {
+  background-color: #64c964;
+  color: white;
+}
+
+.MyButton_negative {
+  background-color: #fb565f;
+  color: white;
+}
+
+/* Header */
+header {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+header > div {
+  display: flex;
+}
+
+header .head_text {
+  width: 50%;
+  font-size: 25px;
+  justify-content: center;
+}
+
+header .head_btn_left {
+  width: 25%;
+  justify-content: start;
+}
+
+header .head_btn_right {
+  width: 25%;
+  justify-content: end;
+}
+
+header button {
+  font-family: "Nanum Pen Script";
+}
+
+/* DiaryList */
+.DiaryList .menu_wrapper {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  display: flex; /* 두개의 div(필터랑 버튼)를 한 줄로 바꿔준다 */
+  justify-content: space-between;
+}
+
+.DiaryList .menu_wrapper .right_col {
+  flex-grow: 1; /* 남은 영역 전체 넓이를 차지하게 됨 */
+}
+.DiaryList .menu_wrapper .right_col button {
+  width: 100%;
+}
+
+/* 셀렉트 두개(필터) 수정 */
+
+.DiaryList .ControlMenu {
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #efefef;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  cursor: pointer;
+  font-family: "Nanum Pen Script";
+  font-size: 18px;
+}
+
+/* DiaryItem */
+.DiaryItem {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e2e2e2;
+
+  display: flex;
+  justify-content: space-between;
+}
+.DiaryItem .emotion_img_wrapper {
+  cursor: pointer;
+  min-width: 120px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+}
+.DiaryItem .emotion_img_wrapper1 {
+  background-color: #64c964;
+}
+
+.DiaryItem .emotion_img_wrapper2 {
+  background-color: #9dd772;
+}
+
+.DiaryItem .emotion_img_wrapper3 {
+  background-color: #fdce17;
+}
+
+.DiaryItem .emotion_img_wrapper4 {
+  background-color: #fd8446;
+}
+
+.DiaryItem .emotion_img_wrapper5 {
+  background-color: #fd565f;
+}
+
+.DiaryItem .emotion_img_wrapper img {
+  width: 50%;
+}
+
+.DiaryItem .info_wrapper {
+  flex-grow: 1;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.DiaryItem .diary_date {
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.DiaryItem .diary_content_preview {
+  font-size: 18px;
+}
+
+.DiaryItem .btn_wrapper {
+  min-width: 70px;
+}
