@@ -1,0 +1,42 @@
+export const dummyData = [
+  {
+    id: 1,
+    rating: 1,
+    title: "Title",
+    author: "Author",
+    content: "북 리뷰 1번",
+    date: 1651664492070,
+  },
+  {
+    id: 2,
+    rating: 3,
+    title: "Title",
+    author: "Author",
+    content: "북 리뷰 2번",
+    date: 1651664492071,
+  },
+  {
+    id: 3,
+    rating: 4,
+    title: "Title",
+    author: "Author",
+    content: "북 리뷰 3번",
+    date: 1651664492072,
+  },
+  {
+    id: 4,
+    rating: 5,
+    title: "Title",
+    author: "Author",
+    content: "북 리뷰 4번",
+    date: 1651664492073,
+  },
+  {
+    id: 5,
+    rating: 2,
+    title: "Title",
+    author: "Author",
+    content: "북 리뷰 5번",
+    date: 1651664492074,
+  },
+];
