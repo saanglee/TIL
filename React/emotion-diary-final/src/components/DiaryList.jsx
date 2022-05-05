@@ -32,9 +32,11 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
 
 const DiaryList = ({ diaryList }) => {
   const navigate = useNavigate();
+  // filter state
   const [sortType, setSortType] = useState("latest");
   const [filter, setFilter] = useState("all");
 
+  // 감정 filter 함수
   const getProcessedDiaryList = () => {
     const filterCallBack = (item) => {
       if (filter === "good") {
@@ -44,6 +46,7 @@ const DiaryList = ({ diaryList }) => {
       }
     };
 
+    // 최신순,오래된 순 함수
     const compare = (a, b) => {
       if (sortType === "latest") {
         return parseInt(b.date) - parseInt(a.date);
@@ -51,6 +54,7 @@ const DiaryList = ({ diaryList }) => {
         return parseInt(a.date) - parseInt(b.date);
       }
     };
+
     const copyList = JSON.parse(JSON.stringify(diaryList));
 
     const filteredList =

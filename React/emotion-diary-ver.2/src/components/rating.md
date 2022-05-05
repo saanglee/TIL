@@ -1,0 +1,5 @@
+{ value: "Excelent", name: "⭐️⭐️⭐️⭐️⭐️" },
+{ value: "good", name: "⭐️⭐️⭐️⭐️" },
+{ value: "not-bad", name: "⭐️⭐️⭐️" },
+{ value: "not-good", name: "⭐️⭐️" },
+{ value: "bad", name: "⭐️" },

@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useReducer, useRef } from "react";
 
 import Home from "./pages/Home";
-import New from "./pages/New";
+import New from "./pages/Create";
 import Edit from "./pages/Edit";
-import Diary from "./pages/Diary";
+import Diary from "./pages/BookReview";
 
 import { dummyData } from "./dummyData";
 

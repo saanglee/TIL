@@ -7,7 +7,8 @@ import List from "../components/List";
 import { BookReviewStateContext } from "../App";
 
 const Home = () => {
-  const reviewList = useContext(BookReviewStateContext); // App.js 의 Context로 부터 더미데이터 공급받음
+  // App.js 의 Context로 부터 더미데이터 공급받음
+  const reviewList = useContext(BookReviewStateContext);
 
   const [review, setReview] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
