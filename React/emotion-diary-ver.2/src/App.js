@@ -3,6 +3,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useReducer, useRef } from "react";
 
+import "./App.css";
 import Home from "./pages/Home";
 import New from "./pages/Create";
 import Edit from "./pages/Edit";
@@ -87,12 +88,14 @@ function App() {
         }}
       >
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/new" element={<New />} />
-            <Route path="/edit:id" element={<Edit />} />
-            <Route path="/diary:id" element={<Diary />} />
-          </Routes>
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/edit:id" element={<Edit />} />
+              <Route path="/diary:id" element={<Diary />} />
+            </Routes>
+          </div>
         </BrowserRouter>
       </BookReviewDispatchContext.Provider>
     </BookReviewStateContext.Provider>
