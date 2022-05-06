@@ -19,21 +19,23 @@ const DiaryItem = ({ id, emotion, content, date }) => {
 
   return (
     <div className="DiaryItem">
+      {/* emotion item area */}
       <div
         onClick={goDetail}
         className={[
-          // emotion에 따라 동적으로 className 변경되도록 함
           "emotion_img_wrapper",
           `emotion_img_wrapper_${emotion}`,
         ].join(" ")}
       >
         <img src={process.env.PUBLIC_URL + `assets/emotion${emotion}.png`} />
       </div>
+      {/* date & content area */}
       <div onClick={goDetail} className="info_wrapper">
         <div className="diary_date">{strDate}</div>
         <div className="diary_content_preview">{content.slice(0, 25)}</div>
       </div>
 
+      {/* button area */}
       <div className="btn_wrapper">
         <MyButton onClick={goEdit} text={"수정하기"}></MyButton>
       </div>
