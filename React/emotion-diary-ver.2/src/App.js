@@ -13,9 +13,6 @@ import { dummyData } from "./dummyData";
 export const BookReviewStateContext = React.createContext();
 export const BookReviewDispatchContext = React.createContext();
 
-const dummy = { dummyData };
-console.log(dummy);
-
 // Reducer 함수
 const reducer = (state, action) => {
   let newState = [];
@@ -44,9 +41,9 @@ const reducer = (state, action) => {
   }
   return newState;
 };
-
+console.log("dummyData", dummyData);
 function App() {
-  const [review, dispatch] = useReducer(reducer, dummy);
+  const [review, dispatch] = useReducer(reducer, dummyData);
   const reviewId = useRef(0);
 
   const onCreate = (title, author, content, date, rating) => {

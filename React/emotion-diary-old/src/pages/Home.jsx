@@ -24,7 +24,7 @@ const Home = () => {
         curDate.getMonth(),
         1
       ).getTime();
-      const lastDaty = new Date( // 월 마지막 날
+      const lastDay = new Date( // 월 마지막 날
         curDate.getFullYear(),
         curDate.getMonth() + 1,
         0
