@@ -9,7 +9,7 @@ import { BookReviewStateContext } from "../App";
 const Home = () => {
   // App.js 의 Context로 부터 더미데이터 공급받음
   const reviewList = useContext(BookReviewStateContext);
-
+  console.log("Home: ", reviewList);
   const [review, setReview] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
   // console.log("[Home] currentDate -> ", currentDate); // 현재시간 찍어보기
@@ -19,13 +19,29 @@ const Home = () => {
     currentDate.getMonth() + 1
   }월`;
 
-  // TODO: curDate변경할 때마다 reviewList에서 해당 년,월의 리뷰 데이터들만 가져오기
+  // TODO: 로직 이해하기..
   useEffect(() => {
-    setReview(reviewList);
-  }, []);
-  console.log("[Home] review state ->", review);
+    if (reviewList.length >= 1) {
+      const firstDay = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        1
+      ).getTime();
+      const lastDay = new Date( // 월 마지막 날
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        0
+      ).getTime();
+      console.log("last Day: ", new Date(lastDay));
 
-  // TODO: increaseMonth 함수 생성 - setCurrentDate 이용
+      setReview(
+        reviewList.filter(
+          (item) => firstDay <= item.date && item.date <= lastDay
+        )
+      );
+    }
+  }, [reviewList, currentDate]);
+
   const increaseMonth = () => {
     setCurrentDate(
       new Date(
@@ -36,7 +52,6 @@ const Home = () => {
     );
   };
 
-  // TODO: decreaseMonth 함수 생성 - setCurrentDate 이용
   const decreaseMonth = () => {
     setCurrentDate(
       new Date(
