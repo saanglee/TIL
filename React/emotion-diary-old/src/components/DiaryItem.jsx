@@ -29,13 +29,13 @@ const DiaryItem = ({ id, emotion, content, date }) => {
       >
         <img src={process.env.PUBLIC_URL + `assets/emotion${emotion}.png`} />
       </div>
-      {/* date & content area */}
+        {/* date & content area */}
       <div onClick={goDetail} className="info_wrapper">
         <div className="diary_date">{strDate}</div>
         <div className="diary_content_preview">{content.slice(0, 25)}</div>
       </div>
 
-      {/* button area */}
+        {/* button area */}
       <div className="btn_wrapper">
         <MyButton onClick={goEdit} text={"수정하기"}></MyButton>
       </div>

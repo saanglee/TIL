@@ -1,7 +1,12 @@
 import React from "react";
+import Editor from "../components/Editor";
 
 const New = () => {
-  return <div>생성</div>;
+  return (
+    <div>
+      <Editor />
+    </div>
+  );
 };
 
 export default New;

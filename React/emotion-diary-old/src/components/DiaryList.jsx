@@ -38,10 +38,9 @@ const DiaryList = ({ diaryList }) => {
   // filter 2
   const [filter, setFilter] = useState("all");
 
-  // 최신순, 오래된 순에 따라 일기 리스트 정렬 바뀌도록 구현
-  // if 문으로 분기를 달아서 정렬된 리스트를 반환
+  // 필터 기능 적용 함수
   const getProcessedDiaryList = () => {
-    // 감정 필터 - 필터링 조건 함수: 좋은 감정만, 안좋은 감정만
+    // if 문으로 분기를 달아서 정렬된 리스트를 반환
     const filterCallBack = (item) => {
       if (filter === "good") {
         return parseInt(item.emotion) <= 3;
@@ -50,8 +49,7 @@ const DiaryList = ({ diaryList }) => {
       }
     };
 
-    // 최신순, 오래된 순 비교 함수 compare
-    // 문자열이 들어올 경우 대비 parseInt
+    // 최신순, 오래된 순 비교 함수 compare // 문자열이 들어올 경우 대비 parseInt
     const compare = (a, b) => {
       if (sortType === "latest") {
         return parseInt(b.date) - parseInt(a.date);
@@ -59,14 +57,16 @@ const DiaryList = ({ diaryList }) => {
         return parseInt(a.date) - parseInt(b.date);
       }
     };
+
     // 배열에 sort를 쓰면 원본배열이 정렬이 된다 - 그래서 배열을 '깊은 복사'를 해서 사용
-    // stringify: diaryList배열을 'JSON화'함 문자열로 바꿔줌 -> parse: 다시 배열로 바꿔줌
+    // stringify: diaryList배열을 'JSON화'함 (배열을 문자열로 바꿔준다는 말) -> 문자열로 된걸 parse -> 다시 배열로 바꿔줌 -> copyList에 넣어줌
     const copyList = JSON.parse(JSON.stringify(diaryList));
 
     // 감정 필터 - 필터링 조건 필요: filterCallBack에 it전달 시 true를 반환하는 값만 filtering
     const filteredList =
       filter === "all" ? copyList : copyList.filter((it) => filterCallBack(it));
 
+    // 시간순 정렬결과 sortedList: 객체로 이뤄진 배열 - 그냥 정렬 하려면 적용 안됨 -> compare함수
     const sortedList = filteredList.sort(compare);
     return sortedList;
   };

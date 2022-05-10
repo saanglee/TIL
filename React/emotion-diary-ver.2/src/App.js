@@ -1,9 +1,8 @@
-// import "./App.css";
+import "./App.css";
 // TODO: 더미데이터를 API로 가져와서 넣어보기 (simple diayr 참고)
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import React, { useReducer, useRef } from "react";
 
-import "./App.css";
 import Home from "./pages/Home";
 import New from "./pages/Create";
 import Edit from "./pages/Edit";
@@ -43,6 +42,7 @@ const reducer = (state, action) => {
   return newState;
 };
 console.log("dummyData", dummyData);
+
 function App() {
   const [review, dispatch] = useReducer(reducer, dummyData);
   const reviewId = useRef(0);
@@ -59,6 +59,7 @@ function App() {
         rating,
       },
     });
+    reviewId.current += 1;
   };
 
   const onRemove = (targetId) => {
@@ -92,8 +93,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
-              <Route path="/edit:id" element={<Edit />} />
-              <Route path="/diary:id" element={<Diary />} />
+              <Route path="/edit" element={<Edit />} />
+              <Route path="/diary/:id" element={<Diary />} />
             </Routes>
           </div>
         </BrowserRouter>
