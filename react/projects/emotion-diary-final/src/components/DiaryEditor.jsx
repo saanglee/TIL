@@ -19,7 +19,6 @@ const env = process.env;
 env.PUBLIC_URL = env.PUBLIC_URL || "";
 
 const DiaryEditor = ({ isEdit, originData }) => {
-  // console.log(getStringDate(new Date()));
   const navigate = useNavigate();
   const contentRef = useRef();
 
@@ -55,9 +54,6 @@ const DiaryEditor = ({ isEdit, originData }) => {
 
   const handleRemove = () => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
-      console.log("originData -> ", originData);
-      console.log("originData.id -> ", originData.id);
-
       onRemove(originData.id);
       navigate("/", { replace: true }); // 삭제 후 홈으로
     }

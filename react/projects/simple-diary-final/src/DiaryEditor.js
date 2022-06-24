@@ -31,7 +31,6 @@ const DiaryEditor = () => {
     // 2. 전달받은 onCreate함수 호출
     onCreate(state.author, state.content, state.emotion); // 일기 요소들 받아옴
     alert("저장! 성공!😫");
-    // 저장 후 setState통해 초기화 해주기
     setState({
       author: "",
       content: "",
