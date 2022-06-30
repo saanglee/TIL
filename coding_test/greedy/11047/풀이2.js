@@ -22,9 +22,6 @@ console.log(input);
 
 let [n, k, ...coins] = input;
 
-// console.log(n, k);
-// console.log(coins);
-
 coins.sort((a, b) => b - a); // 내림차순 정렬
 console.log(`coins: ${coins}`);
 
@@ -36,9 +33,11 @@ for (let i = 0; i < coins.length; i++) {
     continue;
   } else {
     const quotient = Math.floor(k / coins[i]);
-    // console.log(`coins[i]: ${coins[i]}`);
-    // console.log(`k: ${k}원`);
-    // console.log(`quetient: ${quotient}`);
+    /*
+    console.log(`coins[i]: ${coins[i]}`);
+    console.log(`k: ${k}원`);
+    console.log(`quetient: ${quotient}`);
+    */
     k -= quotient * coins[i];
     count += quotient;
 

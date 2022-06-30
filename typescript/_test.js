@@ -1,7 +1,9 @@
-var myBeear = {
-    name: "Saporo"
-};
-function brewBeer(beer) {
-    console.log(beer.name);
+"use strict";
+class myBeer {
+    constructor() {
+        this.beerName = "Baby Guinness";
+    }
+    nameBeer(b) {
+        this.beerName = b;
+    }
 }
-brewBeer(myBeear);
